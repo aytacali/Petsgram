@@ -9,19 +9,19 @@
     <form action="/listings" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-6">
-            <label for="company" class="inline-block text-lg mb-2">Pet Name
+            <label for="animalName" class="inline-block text-lg mb-2">Pet Name
             </label>
-            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company" value="{{ old('company') }}"/>
-            @error('company')
+            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="animalName" value="{{ old('animalName') }}"/>
+            @error('animalName')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>
 
         <div class="mb-6">
-            <label for="title" class="inline-block text-lg mb-2">Pet Title
+            <label for="animal" class="inline-block text-lg mb-2">Pet Type
             </label>
-            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title" placeholder="Example: Yellow Cat" value="{{ old('title') }}"/>
-            @error('title')
+            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="animal" placeholder="Example: Yellow Cat" value="{{ old('animal') }}"/>
+            @error('animal')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>

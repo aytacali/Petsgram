@@ -10,19 +10,19 @@
             @csrf
             @method('PUT')
             <div class="mb-6">
-                <label for="company" class="inline-block text-lg mb-2">Pet Name
+                <label for="animalName" class="inline-block text-lg mb-2">Pet Name
                 </label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company" value="{{ $listing->company }}"/>
-                @error('company')
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="animalName" value="{{ $listing->animalName }}"/>
+                @error('animalName')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="title" class="inline-block text-lg mb-2">Pet Title
+                <label for="animal" class="inline-block text-lg mb-2">Animal type
                 </label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title" placeholder="Example: Yellow Cat" value="{{ $listing->title }}"/>
-                @error('title')
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="animal" placeholder="Example: Yellow Cat" value="{{ $listing->animal }}"/>
+                @error('animal')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>

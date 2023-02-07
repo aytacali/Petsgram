@@ -17,9 +17,9 @@ class ListingFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake()->sentence(),
+            'animal' => fake()->sentence(),
             'tags' => 'cat, dog, bird',
-            'company' => fake()->company(),
+            'animalName' => fake()->company(),
             'email' => fake()->companyEmail(),
             'location' => fake()->country(),
             'description' => fake()->paragraph(5),

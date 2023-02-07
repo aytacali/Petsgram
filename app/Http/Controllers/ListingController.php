@@ -34,8 +34,8 @@ class ListingController extends Controller
 	public function store(Request $request) {
 //		dd($request->file('logo')->store());
 		$formFields = $request->validate([
-			'title' => 'required',
-			'company' => ['required', Rule::unique('listings', 'company')],
+			'animal' => 'required',
+			'animalName' => ['required', Rule::unique('listings', 'animalName')],
 			'location' => 'required',
 			'email' => ['required', 'email'],
 			'tags' => 'required',
@@ -45,6 +45,8 @@ class ListingController extends Controller
 		if($request->hasFile('logo')) {
 			$formFields['logo'] = $request->file('logo')->store('logos', 'public');
 		}
+
+		$formFields['user_id'] = auth()->id();
 
 		Listing::create($formFields);
 
@@ -60,9 +62,14 @@ class ListingController extends Controller
 
 
 	public function update(Request $request, Listing $listing) {
+
+		// Make Sure Logged In User Is Owner
+		if($listing->user_id != auth()->id()) {
+			abort(403, 'Unauthorized Action');
+		}
 		$formFields = $request->validate([
-			'title' => 'required',
-			'company' => 'required',
+			'animal' => 'required',
+			'animalName' => 'required',
 			'location' => 'required',
 			'email' => ['required', 'email'],
 			'tags' => 'required',
@@ -82,7 +89,17 @@ class ListingController extends Controller
 
 	// Delete Listing
 	public function destroy(Listing $listing) {
+		// Make Sure Logged In User Is Owner
+		if($listing->user_id != auth()->id()) {
+			abort(403, 'Unauthorized Action');
+		}
 		$listing->delete();
 		return redirect('/')->with('message', 'Listing deleted successufully!');
+	}
+
+
+	// Manage Listings
+	public function manage() {
+		return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
 	}
 }
