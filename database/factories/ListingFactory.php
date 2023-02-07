@@ -21,7 +21,6 @@ class ListingFactory extends Factory
             'tags' => 'cat, dog, bird',
             'company' => fake()->company(),
             'email' => fake()->companyEmail(),
-            'website' => fake()->url(),
             'location' => fake()->country(),
             'description' => fake()->paragraph(5),
 
